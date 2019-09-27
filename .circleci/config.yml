@@ -6,10 +6,38 @@ jobs:
       - checkout
       - run: docker build -t openvpn/test:1.2.3 .
 
-  deploy:
+  deploy-stage:
     machine: true
     steps:
       - checkout
       - ls -la
+  deploy-prod:
+    machine: true
+    steps:
+      - checkout
+      - ls -la
+      - echo "Production"
 
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - /feature-.*/
+      - deploy-stage:
+          requires:
+            - build
+          filters:
+            branches:
+              only: test-ci
+      - deploy-prod:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
     
