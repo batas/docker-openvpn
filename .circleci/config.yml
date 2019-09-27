@@ -10,13 +10,16 @@ jobs:
     machine: true
     steps:
       - checkout
-      - ls -la
+      - run:
+          name: Test command
+          command: ls -la
   deploy-prod:
     machine: true
     steps:
       - checkout
-      - ls -la
-      - echo "Production"
+      - run:
+        name: Tet command production
+        command: echo "Production"
 
 workflows:
   version: 2
