@@ -6,4 +6,9 @@ jobs:
       - checkout
       - run: docker build -t openvpn/test:1.2.3 .
 
+  deploy:
+    steps:
+      - checkout
+      - ls -la
+
     
