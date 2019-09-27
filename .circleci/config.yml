@@ -4,6 +4,6 @@ jobs:
     machine: true
     steps:
       - checkout
-      - run: docker build -t openvpn/test:1.2.3
+      - run: docker build -t openvpn/test:1.2.3 .
 
     
